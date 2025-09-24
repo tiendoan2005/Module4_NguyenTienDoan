@@ -1,0 +1,9 @@
+create database students;
+use students;
+
+create table student(
+msv varchar(20) primary key,
+name nvarchar(50) not null,
+garden float
+);
+select * from student
