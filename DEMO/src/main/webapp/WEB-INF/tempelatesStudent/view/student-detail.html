@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chi tiết sinh viên</title>
+</head>
+<body>
+<h2>Thông tin chi tiết</h2>
+<p>Mã SV: <span th:text="${student.id}"></span></p>
+<p>Họ tên: <span th:text="${student.name}"></span></p>
+<p>Điểm: <span th:text="${student.garden}"></span></p>
+
+<p>
+    <a th:href="@{/students/{id}/edit(id=${student.id})}">Sửa</a>
+<form th:action="@{/students/{id}/delete(id=${student.id})}" method="post" style="display: inline">
+    <button type="submit" onclick="return confirm('Xóa sinh viên này?')">Xóa</button>
+</form>
+<br>
+<a th:href="@{/students}">Quay lại danh sách</a>
+</body>
+</html>
+

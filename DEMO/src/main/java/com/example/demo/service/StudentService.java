@@ -68,4 +68,9 @@ public class StudentService implements IStudentService {
     public void deleteStudent(String id) {
         studentDAO.deleteStudent(id);
     }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentDAO.getAllStudents();
+    }
 }

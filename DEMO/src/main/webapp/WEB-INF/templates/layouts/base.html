@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{fragments/header}"></div>
+
+<!-- Content-->
+<div th:insert="${content}">Đây là nội dung của bạn!</div>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

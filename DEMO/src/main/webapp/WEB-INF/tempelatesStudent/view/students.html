@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sinh viên</title>
+</head>
+<body>
+
+<div th:if="${message}" style="color: green" th:text="${message}"></div>
+
+<h3>Danh sách sinh viên</h3>
+
+<form th:action="@{/students}" method="get">
+    <div>
+        <label>Tìm kiếm: </label>
+        <input type="text" name="q" placeholder="Nhập tên hoặc mã SV" th:value="${q}">
+        <button type="submit">Tìm</button>
+    </div>
+    <div>
+        <label>Sắp xếp theo: </label>
+        <select name="sort">
+            <option value="id" th:selected="${sort == 'id'}">Mã Sinh Viên</option>
+            <option value="name" th:selected="${sort == 'name'}">Tên</option>
+            <option value="garden" th:selected="${sort == 'garden'}">Điểm</option>
+        </select>
+        <select name="dir">
+            <option value="asc" th:selected="${dir == 'asc'}">Tăng dần</option>
+            <option value="desc" th:selected="${dir == 'desc'}">Giảm dần</option>
+        </select>
+        <button type="submit">Sắp xếp</button>
+    </div>
+
+    <div>
+        <h4>Phân trang</h4><br>
+        Trang: <input type="number" name="page" min="1" th:value="${page}">
+        Size mỗi trang: <input type="number" name="size" th:value="${size}">
+        <button type="submit">Xem</button>
+    </div>
+</form>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Mã sinh viên</th>
+        <th>Họ tên</th>
+        <th>Điểm tổng kết</th>
+        <th>Xếp hạng</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.garden}"></td>
+        <td th:text="${student.rank}"></td>
+        <td>
+            <a th:href="@{/students/{id}(id=${student.id})}">Chi tiết</a>
+            <a th:href="@{/students/{id}/edit(id=${student.id})}">Sửa</a>
+            <form th:action="@{/students/{id}/delete(id=${student.id})}" method="post" style="display:inline">
+                <button type="submit" onclick="return confirm('Xóa sinh viên này?')">Xóa</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/students/create}">Thêm sinh viên</a>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/base :: layout(~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang hiển thị HOME</title>
+    <style>
+        .even {
+            background: green;
+        }
+
+        .odd {
+            background: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<div th:fragment="content">
+
+    <span th:text="'Hôm nay là ngày: '+ ${today}"></span>
+    <br/>
+    <span th:text="'Phép tính ' + ${numberOne} + ' + ' + ${numberTwo} + ' = ' + (${numberOne} + ${numberTwo})"></span>
+    <br/>
+    Toán tử 3 ngôi: <span th:text="${numberTwo > 5} ? 'Số này lớn hơn 5' : 'Số này bé hơn 5'"></span>
+    <br/>
+    <a th:href="@{/students}">Danh sách sinh viên</a>
+    <br/>
+    <table border="1">
+        <tr>
+            <th>STT</th>
+            <th>Mã sinh viên</th>
+            <th>Tên sinh viên</th>
+        </tr>
+        <tr th:each="student,start : ${students}" th:object="${student}" th:class="${start.even} ? 'even' : 'odd'">
+            <td th:text="${start.count}"></td>
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

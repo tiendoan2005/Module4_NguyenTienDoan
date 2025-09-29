@@ -36,7 +36,6 @@ public class StudentController {
         modelAndView.addObject("page", page);
         modelAndView.addObject("size", size);
         return modelAndView;
-
     }
 
 

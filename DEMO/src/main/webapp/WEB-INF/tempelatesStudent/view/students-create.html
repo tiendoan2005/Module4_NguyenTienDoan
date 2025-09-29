@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm sinh viên</title>
+</head>
+<body>
+
+<h3>Thêm sinh viên</h3>
+
+<form th:action="@{/students/create}" method="post">
+    <div>
+        <label>Mã sinh viên: </label>
+        <input type="text" name="id" required>
+    </div>
+
+    <div>
+        <label>Tên sinh viên: </label>
+        <input type="text" name="name" required>
+    </div>
+
+    <div>
+        <label>Điểm tổng kết: </label>
+        <input type="number" name="garden" step="any" required>
+    </div>
+
+    <div>
+        <button type="submit">Thêm</button>
+        <a th:href="@{/students}">Quay lại danh sách</a>
+    </div>
+</form>
+
+</body>
+</html>

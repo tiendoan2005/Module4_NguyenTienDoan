@@ -11,7 +11,8 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     protected Class<?>[] getServletConfigClasses() { //nơi khai báo beans dành cho web layer (controller, views)
         return new Class<?>[]{
-                WebConfig.class
+                WebConfig.class,
+                ThymeleafConfig.class
         };
     }
 
