@@ -41,6 +41,7 @@
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>
     <tr>
+        <th>Ảnh</th>
         <th>Mã sinh viên</th>
         <th>Họ tên</th>
         <th>Điểm tổng kết</th>
@@ -50,10 +51,13 @@
     </thead>
     <tbody>
     <tr th:each="student : ${students}">
+        <td>
+            <img th:src="${student.avatar}" alt="avatar" style="max-width: 50px; max-height: 50px"/>
+        </td>
         <td th:text="${student.id}"></td>
         <td th:text="${student.name}"></td>
         <td th:text="${student.garden}"></td>
-        <td th:text="${student.rank}"></td>
+        <td th:text="${student.garden >= 9 ? 'Xuất sắc' : (student.garden >= 8 ? 'Giỏi' :(student.garden >= 6.5 ? 'Khá' :(student.garden >= 5 ? 'Trung bình' : 'Yếu')))}"></td>
         <td>
             <a th:href="@{/students/{id}(id=${student.id})}">Chi tiết</a>
             <a th:href="@{/students/{id}/edit(id=${student.id})}">Sửa</a>

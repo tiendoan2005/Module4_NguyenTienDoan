@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Thêm sinh viên</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
 <h3>Thêm sinh viên</h3>
 
-<form th:action="@{/students/create}" method="post">
+<form th:action="@{/students/create}" method="post" th:object="${student}" enctype="multipart/form-data">
     <div>
         <label>Mã sinh viên: </label>
-        <input type="text" name="id" required>
+        <input type="text" th:field="*{id}">
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="error"></span>
     </div>
 
     <div>
         <label>Tên sinh viên: </label>
-        <input type="text" name="name" required>
+        <input type="text" th:field="*{name}"><br/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span>
     </div>
 
     <div>
         <label>Điểm tổng kết: </label>
-        <input type="number" name="garden" step="any" required>
+        <input type="number" th:field="*{garden}" step="any">
+        <span th:if="${#fields.hasErrors('garden')}" th:errors="*{garden}" class="error"></span>
     </div>
-
+    Avatar:
+    <br/><input type="file" name="avatarFile" accept="image/*"/>
     <div>
         <button type="submit">Thêm</button>
         <a th:href="@{/students}">Quay lại danh sách</a>
@@ -32,3 +41,7 @@
 
 </body>
 </html>
+
+<!-- Bước 1: Người dùng GET / create >>> Form để thêm
+    Bước 2: Người dùng POST / create >>> Gửi dữ liệu từ form lên controller >>> Lưu vào DB
+  -->

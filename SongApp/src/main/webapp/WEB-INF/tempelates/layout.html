@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(pageContent)">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <h1>Song App</h1>
+    <a th:href="@{/song}">Danh sách bài hát</a><br>
+    <a th:href="@{/song/new}">Thêm bài hát</a>
+</header>
+
+<main>
+    <div th:if="${message}" th:text="${message}" style="color: red"></div>
+    <div th:replace="${pageContent}"></div>
+</main>
+
+<footer>
+    <p>(C) 2025 . Song App.</p>
+</footer>
+</body>
+</html>

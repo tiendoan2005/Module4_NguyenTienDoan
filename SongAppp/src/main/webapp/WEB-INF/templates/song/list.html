@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout::layout(~{::pageContent})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="pageContent">
+
+    <table id="table" class="table table-striped table-bordered" style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Genre</th>
+        </tr>
+
+        <tr th:each="song : ${songs}" th:object="${song}">
+            <td th:text="*{id}"></td>
+            <td>
+                <a th:href="@{/song/{id}(id=*{id})}" th:text="*{title}"></a>
+            </td>
+            <td th:text="*{artist.name}"></td>
+            <td th:text="*{genre}"></td>
+        </tr>
+
+    </table>
+
+    <div style="text-align: center">
+        <a class="btn btn-primary" th:if="${songs.hasPrevious()}"
+           th:href="@{/song(page=${songs.number - 1}, size=${songs.size})}">Previous</a>
+
+        <span th:text="${songs.number + 1}"></span> | <span th:text="${songs.totalPages}"></span>
+
+        <a class="btn btn-primary" th:if="${songs.hasNext()}"
+           th:href="@{/song(page=${songs.number + 1}, size=${songs.size})}">Next</a>
+    </div>
+
+</div>
+
+</body>
+</html>

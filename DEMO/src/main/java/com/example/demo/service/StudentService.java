@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.StudentDAO;
 import com.example.demo.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +9,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service //@Bean trong IoC container
+//Tam thời bỏ @Bean trong IoC
 public class StudentService implements IStudentService {
-    @Autowired
-    private StudentDAO studentDAO;
-
 
     @Override
     public List<Student> getStudents(String keyword, String sort, String dir, int page, int size) {
-        List<Student> students = studentDAO.getAllStudents();
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("MS01", "Nguyễn Văn A", 9.0f));
+        students.add(new Student("MS02", "Nguyễn Văn B", 8.2f));
+        students.add(new Student("MS03", "Nguyễn Văn C", 7.8f));
+        students.add(new Student("MS04", "Nguyễn Văn D", 9.9f));
+        students.add(new Student("MS05", "Nguyễn Văn E", 4.0f));
 
         //Tìm kiếm
         if (!keyword.isEmpty()) {
@@ -51,26 +52,23 @@ public class StudentService implements IStudentService {
 
     @Override
     public void addStudent(Student student) {
-        studentDAO.insertStudent(student);
     }
 
     @Override
     public Student findStudentById(String id) {
-        return studentDAO.findStudent(id);
+        return null;
     }
 
     @Override
     public void updateStudent(Student student) {
-        studentDAO.updateStudent(student);
     }
 
     @Override
     public void deleteStudent(String id) {
-        studentDAO.deleteStudent(id);
     }
 
     @Override
     public List<Student> getAllStudents() {
-        return studentDAO.getAllStudents();
+        return null;
     }
 }

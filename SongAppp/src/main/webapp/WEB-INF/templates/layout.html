@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(pageContent)">
+<head>
+    <meta charset="UTF-8">
+    <title >Title</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Song App</h1>
+        <a th:href="@{/song}">Danh sách bài hát</a> |
+        <a th:href="@{/song/new}">Thêm bài hát</a> |
+        <a th:href="@{/artists}">Danh sách nghệ sĩ</a> |
+        <a th:href="@{/artists/new}">Thêm nghệ sĩ</a> |
+    </header>
+
+    <main>
+        <div th:if="${message}" th:text="${message}" style="color: green;"></div>
+        <div th:insert="${pageContent}"></div>
+    </main>
+
+    <footer>
+        <p>(C) 2025 . Song App.</p>
+    </footer>
+</body>
+</html>
